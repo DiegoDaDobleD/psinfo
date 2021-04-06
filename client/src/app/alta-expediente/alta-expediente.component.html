@@ -1,0 +1,83 @@
+<div class="container">
+  <h1>Consulta Expediente</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <form (ngSubmit)="consultarPorId(comandancia.id)" #comandanciaForm="ngForm">
+        <div class="form-group">
+          <label for="id">Consultar por Id</label>
+          <input type="text" class="form-control" [(ngModel)]="comandancia.id" name="id" required>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success" [disabled]="!comandanciaForm.form.valid">Consultar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="errorMessage" class="alert alert-warning">
+  <strong>Warning!</strong> {{errorMessage | json}}
+</div>
+
+<div *ngIf="errorMessage" class="alert alert-danger">
+  <strong>Warning!</strong> Código id no encontrado
+</div>
+
+<div *ngIf="comandancia.nombre" class="container">
+  <h1>Datos Expediente</h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Dirección</th>
+      <th>Código Postal</th>
+      <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>{{ comandancia.nombre }}</td>
+      <td>{{ comandancia.direccion }}</td>
+      <td>{{ comandancia.codigoPostal }}</td>
+      <button type="submit" class="btn btn-success" (click)="abrirModalPanel(mymodal)">editar</button>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Editar Expediente {{ comandancia.id }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <form  #comandanciaEditarForm="ngForm">
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" class="form-control" [(ngModel)]="comandancia.nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+              <label for="direccion">Dirección</label>
+              <input type="text" class="form-control" [(ngModel)]="comandancia.direccion" name="direccion" required>
+            </div>
+            <div class="form-group">
+              <label for="codigoPostal">Código Postal</label>
+              <input type="text" class="form-control" [(ngModel)]="comandancia.codigoPostal" name="codigoPostal" required>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-success" (click)="updateExpediente(comandancia.id);modal.close('Save click')" [disabled]="!comandanciaEditarForm.form.valid">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ng-template>
