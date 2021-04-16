@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
+
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { Comandancia } from '../models/comandancia';
+import { ComandanciaService } from '../services/comandancia.service';
 
 @Component({
   selector: 'app-alta-expediente',
@@ -9,12 +11,18 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./alta-expediente.component.css']
 })
 export class AltaExpedienteComponent implements OnInit {
-  comandancia = {};
+  comandancia: Comandancia = {
+    nombre: '',
+    direccion: '',
+    codigoPostal: ''
+  };
+
   title = 'appBootstrap';
   closeResult: string;
   errorMessage;
 
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private modalService: NgbModal) { }
+  constructor(private comandanciaService: ComandanciaService, private router: Router, private route: ActivatedRoute,
+              private modalService: NgbModal) { }
 
   ngOnInit() {
   }
@@ -22,7 +30,7 @@ export class AltaExpedienteComponent implements OnInit {
   consultarPorId(id) {
     this.errorMessage = '';
 
-    this.http.get('http://localhost:8080/comandancia/' + id).subscribe(data => {
+    this.comandanciaService.getByid(id).subscribe(data => {
       this.comandancia = data;
     }, (err) => {
       console.log(err);
@@ -49,10 +57,15 @@ export class AltaExpedienteComponent implements OnInit {
     }
   }
 
-  updateExpediente(id) {
-    this.http.put('http://localhost:8080/comandancia/' + id, this.comandancia)
-      .subscribe(res => {
-          const id = res['id'];
+  updateExpediente() {
+    const data = {
+      nombre: this.comandancia.nombre,
+      direccion: this.comandancia.direccion,
+      codigoPostal: this.comandancia.codigoPostal
+    };
+
+    this.comandanciaService.update(this.comandancia, data)
+      .subscribe(response => {
           this.router.navigate(['alta-Expediente']);
         }, (err) => {
           console.log(err);

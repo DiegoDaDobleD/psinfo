@@ -17,6 +17,10 @@ import { HomeComponent } from './Home/home/home.component';
 import { ComandanciaComponent } from './comandancia/comandancia.component';
 import { ComandanciaAltaComponent } from './comandancia-alta/comandancia-alta.component';
 import { AltaExpedienteComponent } from './alta-expediente/alta-expediente.component';
+import {NavComponent} from './nav/nav.component';
+
+
+
 
 
 
@@ -31,7 +35,8 @@ import { AltaExpedienteComponent } from './alta-expediente/alta-expediente.compo
     HomeComponent,
     ComandanciaComponent,
     ComandanciaAltaComponent,
-    AltaExpedienteComponent
+    AltaExpedienteComponent,
+    NavComponent
   ],
     imports: [
         BrowserModule,

@@ -1,0 +1,8 @@
+import com.djamware.Comandancia
+
+model {
+	Iterable<Comandancia> comandanciaList
+}
+
+json tmpl.comandancia(comandanciaList ?: [])
+

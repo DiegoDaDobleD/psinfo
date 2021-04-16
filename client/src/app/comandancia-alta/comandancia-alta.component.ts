@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { Comandancia } from '../models/comandancia';
+import { ComandanciaService } from '../services/comandancia.service';
 
 @Component({
   selector: 'app-comandancia-alta',
@@ -8,17 +9,27 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./comandancia-alta.component.css']
 })
 export class ComandanciaAltaComponent implements OnInit {
-  comandancia = {};
+  comandancia: Comandancia = {
+    nombre: '',
+    direccion: '',
+    codigoPostal: ''
+  };
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private comandanciaService: ComandanciaService, private router: Router) { }
 
   ngOnInit() {
   }
 
   altaComandancia() {
-    this.http.post('http://localhost:8080/comandancia', this.comandancia)
-      .subscribe(res => {
-          let id = res['id'];
+    const data = {
+      nombre: this.comandancia.nombre,
+      direccion: this.comandancia.direccion,
+      codigoPostal: this.comandancia.codigoPostal
+    };
+
+    this.comandanciaService.create(data)
+      .subscribe(response => {
+          console.log(response);
           this.router.navigate(['listar-comandancias']);
         }, (err) => {
           console.log(err);

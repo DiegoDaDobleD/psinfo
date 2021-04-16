@@ -1,0 +1,7 @@
+import com.djamware.Comandancia
+
+model {
+	Comandancia comandancia
+}
+
+json g.render(comandancia, [resolveTemplate: false])
