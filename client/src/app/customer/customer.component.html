@@ -17,23 +17,37 @@
 
   </div>
   <br />
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Pending Customer</th>
-      <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let cust of customers">
-      <td>{{ cust.name }}</td>
-      <td>{{ cust.address }}</td>
-      <td>{{ cust.done }}</td>
-      <td><a href="/#/customer-details/{{cust.id}}">Show Detail</a></td>
-    </tr>
-    </tbody>
-  </table>
+  <div *ngIf="customers">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Pending Customer</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let cust of customers">
+        <td>{{ cust.name }}</td>
+        <td>{{ cust.address }}</td>
+        <td>
+          <div *ngIf="cust.done; then thenBlock else elseBlock"></div>
+          <ng-template #thenBlock>REALIZADO</ng-template>
+          <ng-template #elseBlock>PENDIENTE</ng-template>
+        </td>
+        <td><a href="/#/customer-details/{{cust.id}}">Show Detail</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-warning">
+    <strong>Warning!</strong> {{errorMessage | json}}
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    <strong>Warning!</strong> El usuario no tiene rol administrador, no se puede realizar el filtro
+  </div>
 
 </div>

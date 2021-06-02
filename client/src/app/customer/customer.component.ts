@@ -38,12 +38,16 @@ export class CustomerComponent implements OnInit {
        .subscribe(data => {
          this.customer = data;
          console.info(this.customer);
+         this.router.navigate(['/customers']);
        }, (err) => {
          console.log(err);
-         // console.info('error' + err.status);
-         // console.info(typeof err.status);
+         console.info('error' + err.status);
+         console.info(typeof err.status);
          if (typeof err.status === "number" && err.status == 401) {
            this.router.navigate(['/user-login/']);
+         } else {
+           this.errorMessage = err;
+           throw this.errorMessage;
          }
        }
      );
