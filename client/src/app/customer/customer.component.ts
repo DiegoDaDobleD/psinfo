@@ -32,6 +32,23 @@ export class CustomerComponent implements OnInit {
     });
   }
 
+   getPendingCustomers() {
+     const headers = { 'X-Auth-Token': this.token }
+     this.http.get('http://localhost:8080/pendingCustomers/', {headers})
+       .subscribe(data => {
+         this.customer = data;
+         console.info(this.customer);
+       }, (err) => {
+         console.log(err);
+         // console.info('error' + err.status);
+         // console.info(typeof err.status);
+         if (typeof err.status === "number" && err.status == 401) {
+           this.router.navigate(['/user-login/']);
+         }
+       }
+     );
+   }
+
 //  goCustomerCreate(){
 //    this.router.navigate(['customer-create']);
 //  }

@@ -9,6 +9,10 @@
       <a [routerLink]="['/home']" class="btn btn-success">
         HOME
       </a>
+      &nbsp;&nbsp;
+      <button class="btn btn-danger" type="button" (click)="getPendingCustomers()">
+        view pending customers
+      </button>
     </div>
 
   </div>
@@ -18,6 +22,7 @@
     <tr>
       <th>Name</th>
       <th>Address</th>
+      <th>Pending Customer</th>
       <th>Action</th>
     </tr>
     </thead>
@@ -25,6 +30,7 @@
     <tr *ngFor="let cust of customers">
       <td>{{ cust.name }}</td>
       <td>{{ cust.address }}</td>
+      <td>{{ cust.done }}</td>
       <td><a href="/#/customer-details/{{cust.id}}">Show Detail</a></td>
     </tr>
     </tbody>
