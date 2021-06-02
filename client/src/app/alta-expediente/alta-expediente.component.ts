@@ -64,7 +64,7 @@ export class AltaExpedienteComponent implements OnInit {
       codigoPostal: this.comandancia.codigoPostal
     };
 
-    this.comandanciaService.update(this.comandancia, data)
+    this.comandanciaService.update(this.comandancia)
       .subscribe(response => {
           this.router.navigate(['alta-Expediente']);
         }, (err) => {

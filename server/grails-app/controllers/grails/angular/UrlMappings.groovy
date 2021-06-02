@@ -3,6 +3,9 @@ package grails.angular
 class UrlMappings {
 
     static mappings = {
+        "/customer"(resources:"customer")
+        "/pendingCustomers"(controller: 'customer', action: 'pending')
+
         "/$controller/$action?/$id?(.$format)?"{
             constraints {
                 // apply constraints here

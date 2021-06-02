@@ -2,7 +2,7 @@ package com.djamware
 
 import grails.rest.*
 
-@Resource(uri='/customer')
+// @Resource(uri='/customer', formats=['json', 'xml']) // readOnly = true
 class Customer {
 
     String name
@@ -10,6 +10,7 @@ class Customer {
     String city
     String postalCode
     String phone
+    boolean done
 
     static constraints = {
         name blank: false
@@ -17,6 +18,7 @@ class Customer {
         city blank: false
         postalCode blank: false
         phone blank: false
+        done blank: false
     }
 
     String toString(){

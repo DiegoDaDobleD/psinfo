@@ -66,6 +66,8 @@ dependencies {
     testCompile "org.grails:grails-web-testing-support"
     testCompile "org.grails:views-json-testing-support"
     testCompile "org.hibernate.validator:hibernate-validator:6.0.20.Final"
+    compile 'org.grails.plugins:spring-security-core:4.0.3'
+    compile "org.grails.plugins:spring-security-rest:2.0.0.M2"
 }
 
 bootRun {

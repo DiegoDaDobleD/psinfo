@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   }
 
   ListarCustomer() {
-    this.router.navigate(['listarCustomers']);
+    this.router.navigate(['customers']);
   }
 
   ListarComandancias() {

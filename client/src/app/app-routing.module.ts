@@ -8,22 +8,24 @@ import { HomeComponent } from './Home/home/home.component';
 import {ComandanciaComponent} from './comandancia/comandancia.component';
 import {ComandanciaAltaComponent} from "./comandancia-alta/comandancia-alta.component";
 import {AltaExpedienteComponent} from "./alta-expediente/alta-expediente.component";
+import { UserLoginComponent } from "./user-login/user-login.component";
 
 
 const routes: Routes = [
   {
-    path: 'listarCustomers',
+    path: 'customers',
     component: CustomerComponent,
     data: { title: 'Customer List' }
   },
+ 	{
+ 		path: '',
+ 		redirectTo: '/user-login',
+ 		pathMatch: 'full'
+ 	},
   {
     path: 'home',
     component: HomeComponent,
     data: { title: 'Home' }
-  },
-  { path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
   },
   {
     path: 'customer-create',
@@ -55,6 +57,13 @@ const routes: Routes = [
     component: AltaExpedienteComponent,
     data: { title: 'Alta Expediente' }
   },
+  {
+    path: 'user-login',
+    component: UserLoginComponent,
+    data: { title: 'User Login' }
+  },
+  {path: '', redirectTo: 'index', pathMatch: 'full'},
+  {path: 'index', component: UserLoginComponent}
 ];
 
 @NgModule({
