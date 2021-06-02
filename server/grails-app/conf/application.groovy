@@ -18,6 +18,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/**/favicon.ico', access: ['permitAll']],
 	[pattern: '/api/login',      access: ['permitAll']],
 	[pattern: '/api/logout',     access: ['isFullyAuthenticated()']],
+	[pattern: '/comandancia',    access: ['permitAll']],
 	[pattern: '/customer',       access: ['isFullyAuthenticated()']],
 	[pattern: '/pendingCustomers',       access: ['isFullyAuthenticated()']],
 	[pattern: '/**',             access: ['isFullyAuthenticated()']]
@@ -32,6 +33,7 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 	[pattern: '/**/favicon.ico', filters: 'none'],
 	[pattern: '/customer/**', 		 filters:'JOINED_FILTERS,-anonymousAuthenticationFilter,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter'],
 	[pattern: '/pendingCustomers/**', 		 filters:'JOINED_FILTERS,-anonymousAuthenticationFilter,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter'],
+	[pattern: '/comandancia/**',  filters: 'none'],
 	[pattern: '/api/**', 		 filters:'JOINED_FILTERS,-anonymousAuthenticationFilter,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter'],
 	[pattern: '/**', 			 filters:'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter']
 ]

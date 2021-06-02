@@ -9,6 +9,10 @@
         </div>
         <div class="form-group">
           <button type="submit" class="btn btn-success" [disabled]="!comandanciaForm.form.valid">Consultar</button>
+          &nbsp; &nbsp;
+          <a [routerLink]="['/home']" class="btn btn-success">
+            HOME
+          </a>
         </div>
       </form>
     </div>
