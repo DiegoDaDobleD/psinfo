@@ -36,8 +36,8 @@ export class CustomerComponent implements OnInit {
      const headers = { 'X-Auth-Token': this.token }
      this.http.get('http://localhost:8080/pendingCustomers/', {headers})
        .subscribe(data => {
-         this.customer = data;
-         console.info(this.customer);
+         this.customers = data;
+         console.info(this.customers);
          this.router.navigate(['/customers']);
        }, (err) => {
          console.log(err);
