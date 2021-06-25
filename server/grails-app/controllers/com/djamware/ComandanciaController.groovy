@@ -15,7 +15,7 @@ class ComandanciaController {
 
     ComandanciaService comandanciaService
 
-    static responseFormats = ['json', 'xml']
+    static responseFormats = ['xml', 'json']
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {

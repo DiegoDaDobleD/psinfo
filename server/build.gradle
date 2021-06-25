@@ -4,7 +4,8 @@ buildscript {
     }
     dependencies {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
-        classpath "org.grails.plugins:hibernate5:7.0.4"
+        // classpath "org.grails.plugins:hibernate5:7.0.4"
+        classpath "org.grails.plugins:hibernate5:7.1.0.M1"
         classpath "org.grails.plugins:views-gradle:2.0.2"
     }
 }
@@ -68,6 +69,10 @@ dependencies {
     testCompile "org.hibernate.validator:hibernate-validator:6.0.20.Final"
     compile 'org.grails.plugins:spring-security-core:4.0.3'
     compile "org.grails.plugins:spring-security-rest:2.0.0.M2"
+
+    compile "com.oracle.database.jdbc:ojdbc8:21.1.0.0"
+    runtime 'com.oracle.database.jdbc:ojdbc6:11.2.0.4'
+
 }
 
 bootRun {

@@ -8,7 +8,7 @@ import grails.plugin.springsecurity.annotation.Secured
 
 @Secured(['ROLE_USER', 'ROLE_ADMIN'])
 class CustomerController extends RestfulController {
-    static responseFormats = ['json', 'xml']
+    static responseFormats = ['xml', 'json']
     CustomerController() {
         super(Customer)
     }
